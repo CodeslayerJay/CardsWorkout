@@ -172,7 +172,7 @@ html, body {
     color: #fff;
     font-size: 1.2em;
     width: 80%;
-    
+    max-width: 300px;
 }
 
 #wrapper #page_footer #finish_workout_btn{
