@@ -155,6 +155,7 @@ html, body {
 #wrapper #page_content #exercise_count {
     font-size: 3em;
     margin: 0;
+    text-transform: uppercase;
 }
 
 #wrapper #page_footer {
