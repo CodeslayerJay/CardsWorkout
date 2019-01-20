@@ -1,19 +1,22 @@
 /////////////////////////////////////////////////////////////
-//  BodyCircuits/z
+//  BodyCore Circuits
 //  Simple random bodyweight workout generator
 //
 //  Author: Jeremy Willhelm
 /////////////////////////////////////////////////////////////
+var exercises = ['squats', 'crunches', 'pushups', 'pikes'];
+
 
 // EXERCISES & REPS
-var exercises = ['squats', 'crunches', 'pushups', 'pikes'];
+
+
 var reps = [2,3,4,5,6,7,8,9,10,10,10,10,15];
 var wildcardExercise1 = {
-    exercise: "do all",
+    exercise: "do each exercise",
     reps: 5
 };
 var wildcardExercise2 ={
-    exercise: "do all",
+    exercise: "do each exercise",
     reps: 8
 };
 
@@ -27,7 +30,8 @@ var workoutComplete = false;
 var settings = {
     restTimer: 2, // TIMER FOR REST PERIODS - Default: 2 mins
     totalCounter: 0, // COUNTER FOR TOTAL EXERCISES COMPLETED
-    breakCounter: 0 // COUNTER TO KEEP TRACK WHEN START REST PERIODS
+    breakCounter: 0, // COUNTER TO KEEP TRACK WHEN START REST PERIODS
+    workout: 'default' // EXERCISE LIST USED TO GENERATE WORKOUTS
 }
 
 
@@ -49,9 +53,9 @@ function addExercise(name){
 /////////////////////////////////////////////////////////////
 // CREATE WORKOUT
 /////////////////////////////////////////////////////////////
-function createWorkout(){
+function createWorkout(workout){
    
-  var i, j;
+    var i, j;
 
     // FILL WORKOUT LIST WITH EXERCISE AND REP SCHEME
     for(i=0; i < exercises.length; i++){
@@ -62,6 +66,9 @@ function createWorkout(){
             }
         }
     }
+    
+    // SHUFFLE 
+    shuffleWorkoutList(workoutList);
     
     // ADD WILDCARD EXERCISES
     workoutList.push(wildcardExercise1);
@@ -154,7 +161,7 @@ function updateExercise(){
             settings.breakCounter = 0; // RESET COUNTER TO 0
 
             // UPDATE TEXT
-            displayExercise("Take a break", "2 mins");
+            displayExercise("Rest", "2 mins");
 
             // START TIMER
             //startRestTimer();
@@ -186,6 +193,7 @@ function init(){
     
     // DISPLAY
     updateCounter();
+    //workoutTimer();
     displayExercise(workoutList[currentExerciseIndex].exercise, workoutList[currentExerciseIndex].reps);
 }
 
@@ -200,6 +208,65 @@ function displayExercise(main, sub){
 }
 
 /////////////////////////////////////////////////////////////
+// WORKOUT TIMER
+/////////////////////////////////////////////////////////////
+function workoutTimer() { 
+    var minutes, seconds;
+    var display = document.getElementById("workout_timer");
+    
+    setInterval(function () {
+        minutes = parseInt(0 / 60, 10)
+        seconds = parseInt(1 % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+    }, 1000);
+}
+
+
+/////////////////////////////////////////////////////////
+// UI INTERACTIVITY - JQuery
+/////////////////////////////////////////////////////////
+$('#show_info_page_btn').click(function(){
+    $('#front_page').hide();
+    $('#more_info_page').show();
+});
+
+$('#info_back_btn').click(function(){
+    $('#more_info_page').hide();
+    $('#front_page').show();
+});
+
+$('#beginner_workout_btn').click(function(){
+    $('#front_page').hide();
+    $('#workout_page').show();
+    init();
+});
+
+$('#int_workout_btn').click(function(){
+    $('#front_page').hide();
+    $('#workout_page').show();
+    
+    exercises = ['incline pushups', 'elevated pikes', 'situps', 'pushups'];
+    init();
+});
+
+$('#adv_workout_btn').click(function(){
+    $('#front_page').hide();
+    $('#workout_page').show();
+    
+    exercises = ['incline pushups', 'elevated pikes', 'burpees', 'pull-ups'];
+    init();
+});
+
+$('#home_btn').click(function(){
+   window.location.href="";  
+});
+
+/////////////////////////////////////////////////////////////
 // KICKSTART APP
 /////////////////////////////////////////////////////////////
-init();
+//init();

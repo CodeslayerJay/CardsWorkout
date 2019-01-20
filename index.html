@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <title>BodyCircuitz</title>
-    <meta name="description" content="Fun workout using old fashioned playing cards">
+    <title>BodyCore Circuits</title>
+    <meta name="description" content="Random workout generator using bodyweight exercises.">
   
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
 
@@ -29,26 +29,77 @@
 
   <!-- PAGE CONTENT -->
     <div id="wrapper">
-        <!-- PAGE HEADER & NAVIGATION -->
-        <div id="page_header">
-            <!-- <a href="#">Home</a> -->
-            <span id="total_exercise_count"></span>
-        </div>
-        <!-- // END HEADER -->
         
-        <!-- MAIN CONTENT -->
-        <div id="page_content">
-            <h1 id="exercise_title"></h1>
-            <p id="exercise_count">Creating Workout...</p>
-        </div>
-        <!-- // END MAIN CONTENT -->
         
-        <!-- PAGE FOOT / BUTTONS / OPTIONS -->
-        <div id="page_footer">
-            <button id="next_exercise_btn" onclick="updateExercise()">Next</button>
-            <!-- <button id="finish_workout_btn">Finish Workout</button> -->
+        <!-- FRONT PAGE -->
+        <div id="front_page">
+            <h1 class="title">BodyCore</h1>
+            <p class="tagline">Simple random workout generator.</p>
+            <ul>
+                <li><button id="beginner_workout_btn">Beginner</button></li>
+                <li><button id="int_workout_btn">Intermediate</button></li>
+                <li><button id="adv_workout_btn">Advanced</button></li>
+                <!--<li><button>Custom</button></li>-->
+            </ul>
+            
+            <p>
+                <button id="show_info_page_btn">First time?</button>
+            </p>
+        
+            <p id="copyright_footer">&copy; 2019 - BodyCoreWorkout.com</p>
         </div>
-        <!-- // END PAGE FOOT -->
+        <!-- // END OF FRONT PAGE -->
+        
+        <!-- CUSTOM EXERCISE / EDIT PAGE 
+        <div id="edit_page">
+        
+        
+        </div>
+         // END OF CUSTOM EXERCISE / EDIT PAGE -->
+        
+        <!-- MORE INFORMATION PAGE -->
+        <div id="more_info_page">
+            <h1 class="title">BodyCore</h1>
+            <hr/>
+            <p>BodyCore is a simple random workout generator using bodyweight exercises. The concept comes
+                from using a deck of playing card to create workouts. Each suit in the deck represents an exercise--Spades: Squats, 
+                Hearts: Pushups, Diamonds: Pikes, Clovers: Crunches. The number on the card represents how many reps to perform with 
+                face cards being 10 reps.
+            </p>
+            <p>
+                Disclaimer: <br>
+                This app is for entertainment purpose. Please consult your doctor or a physician before performing any exercise
+                generated from this app.
+            </p>
+            <button id="info_back_btn">Back</button>
+        </div>
+        <!-- // END OF MORE INFORMATION PAGE -->
+        
+        <!-- WORKOUT PAGE -->
+        <div id="workout_page">
+            <!-- PAGE HEADER & NAVIGATION -->
+            <div id="page_header">
+                <a href="#" id="home_btn">Home</a>
+                <span id="total_exercise_count"></span>
+            </div>
+            <!-- // END HEADER -->
+
+            <!-- MAIN CONTENT -->
+            <div id="page_content">
+                <h1 id="exercise_title"></h1>
+                <p id="exercise_count">Creating Workout...</p>
+            </div>
+            <!-- // END MAIN CONTENT -->
+
+            <!-- PAGE FOOT / BUTTONS / OPTIONS -->
+            <div id="page_footer">
+                <!--<p id="workout_timer">1:00</p>-->
+                <button id="next_exercise_btn" onclick="updateExercise()">Next</button>
+                <!-- <button id="finish_workout_btn">Finish Workout</button> -->
+            </div>
+            <!-- // END PAGE FOOT -->
+        </div>
+        <!-- // END WORKOUT PAGE -->
     </div>
   <!-- // END PAGE CONTENT -->
     
@@ -56,7 +107,6 @@
     
   <!-- SCRIPTS -->
     <script src="js/vendor/modernizr-3.6.0.min.js"></script>
-    <script src="js/vendor/jquery-3.3.1.min.js"></script>
     <script src="js/vendor/jquery-3.3.1.min.js"></script>
     
     <script src="js/main.js"></script>
