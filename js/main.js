@@ -55,6 +55,9 @@ function addExercise(name){
 /////////////////////////////////////////////////////////////
 function createWorkout(workout){
    
+    // clear workout list
+    workoutList = [];
+    
     var i, j;
 
     // FILL WORKOUT LIST WITH EXERCISE AND REP SCHEME
@@ -71,8 +74,8 @@ function createWorkout(workout){
     shuffleWorkoutList(workoutList);
     
     // ADD WILDCARD EXERCISES
-    workoutList.push(wildcardExercise1);
-    workoutList.push(wildcardExercise2);
+    //workoutList.push(wildcardExercise1);
+    //workoutList.push(wildcardExercise2);
 }
 
 /////////////////////////////////////////////////////////////
@@ -193,7 +196,7 @@ function init(){
     
     // DISPLAY
     updateCounter();
-    //workoutTimer();
+    workoutTimer();
     displayExercise(workoutList[currentExerciseIndex].exercise, workoutList[currentExerciseIndex].reps);
 }
 
@@ -211,18 +214,26 @@ function displayExercise(main, sub){
 // WORKOUT TIMER
 /////////////////////////////////////////////////////////////
 function workoutTimer() { 
-    var minutes, seconds;
+    
     var display = document.getElementById("workout_timer");
+    var minutes = 0;
+    var seconds = 0;
     
     setInterval(function () {
-        minutes = parseInt(0 / 60, 10)
-        seconds = parseInt(1 % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-
+        
+        if( seconds > 60){
+            minutes = minutes + 1;
+            seconds = 0;
+        }
+        
+        if( seconds < 10){
+            display.textContent = "0" + minutes + ":0" + seconds;
+        } 
+        else {
+            display.textContent =  "0" + minutes + ":" + seconds;
+        }
+        
+        seconds = seconds + 1;
     }, 1000);
 }
 

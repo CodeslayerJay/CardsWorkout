@@ -8,7 +8,7 @@
     <title>BodyCore Circuits</title>
     <meta name="description" content="Random workout generator using bodyweight exercises.">
   
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=0">
 
     <link rel="manifest" href="site.webmanifest">
     <link rel="apple-touch-icon" href="icon.png">
@@ -66,6 +66,16 @@
                 Hearts: Pushups, Diamonds: Pikes, Clovers: Crunches. The number on the card represents how many reps to perform with 
                 face cards being 10 reps.
             </p>
+            
+            <p>
+                How to do the workouts: <br><br>
+                Perform as many exercises with perfect form in the fastest time possible. When you are finished note how many
+                exercises you completed by the total exercise count in top right corner of screen and the current duration of workout.
+                If you want a greater challenge, then select a more difficult workout plan or try to beat your previous workout 
+                count and duration.
+                
+            </p>
+            
             <p>
                 Disclaimer: <br>
                 This app is for entertainment purpose. Please consult your doctor or a physician before performing any exercise
@@ -93,7 +103,7 @@
 
             <!-- PAGE FOOT / BUTTONS / OPTIONS -->
             <div id="page_footer">
-                <!--<p id="workout_timer">1:00</p>-->
+                <p id="workout_timer">00:00</p>
                 <button id="next_exercise_btn" onclick="updateExercise()">Next</button>
                 <!-- <button id="finish_workout_btn">Finish Workout</button> -->
             </div>

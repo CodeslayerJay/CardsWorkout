@@ -172,7 +172,7 @@ FRONT PAGE
 #front_page {
     display: block;
     width: 100%;
-    text-overflow: ellipsis;
+    
 }
 
 #front_page #copyright_footer {
@@ -195,17 +195,18 @@ INFO PAGE
 ----------------------*/
 #more_info_page {
     display: none;
+    padding-bottom: 20px;
 }
 
 #show_info_page_btn {
-    margin-top: 80px;
+    margin-top: 30px;
 }
 
 #more_info_page p {
     width: 80%;
     margin: 10px auto;
     line-height: 1.5;
-    padding: 5px 5px;
+    padding: 10px 5px;
     text-align: justify;
     font-size: 1.1em;
 }
@@ -215,7 +216,7 @@ INFO PAGE
         width: 50%;
         margin: 0 auto;
         line-height: 1.5;
-        padding: 20px 10px;
+        padding: 40px 10px;
         text-align: justify;
     } 
 }
@@ -288,7 +289,7 @@ WORKOUT PAGE
 }
 
 
-#wrapper #page_footer {
+#page_footer {
    
     width: 100%;
 }
@@ -297,14 +298,22 @@ WORKOUT PAGE
     font-size: 1.5em;
 }
 
-#wrapper #page_footer button {
+#page_footer button {
     position: absolute;
-    bottom: 20px;
+    bottom: 10px;
     left: 0;
     right: 0;
 }
 
-#wrapper #page_footer #finish_workout_btn{
+@media (min-width: 500px){
+    
+    #page_footer button {
+        bottom: 60px;
+        
+    }
+}
+
+#page_footer #finish_workout_btn{
     border: none;
 }
 
