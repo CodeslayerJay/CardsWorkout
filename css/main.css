@@ -141,19 +141,19 @@ ul {
 }
 
 ul li {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .title {
     padding-top: 20px;
     margin-bottom: 0px;
-    font-size: 3em;
+    font-size: 1.5em;
 }
 
 .tagline {
     margin-top: 0px;
-    font-size: 1em;
-    padding-bottom: 20px;
+    font-size: 2.5em;
+    padding: 10px;
 }
 
 @media(min-width: 500px){
@@ -163,6 +163,7 @@ ul li {
     
     .tagline {
         padding-top: 20px;
+        margin-bottom: -20px;
     }
 }
 
@@ -176,19 +177,43 @@ FRONT PAGE
 }
 
 #front_page #copyright_footer {
-    position: absolute;
-    bottom: 10px;
+    position: relative;
     margin: 0 auto;
-    left: 0px;
-    right: 0px;
-    display: block;
+    padding: 10px 0px;
 }
 
 /*---------------------
 EDIT PAGE 
 ----------------------*/
 
+#edit_page {
+    margin: 0 auto;
+    text-align: center;
+    display: none;
+}
 
+
+#edit_page input {
+    display: block;
+    padding: 5px;
+    width: 290px;
+    margin: 3px auto;
+    border-radius: 3px;
+}
+
+#edit_page #custom_form_submit_btn {
+    display: block;
+    padding: 10px 20px;
+    background-color: transparent;
+    margin: 5px auto;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.2em;
+    width: 80%;
+    max-width: 300px;
+    cursor: pointer;
+}
 
 /*---------------------
 INFO PAGE 
@@ -263,7 +288,7 @@ WORKOUT PAGE
 }
 
 #page_content #exercise_title {
-    font-size: 3.3em;
+    font-size: 2em;
     margin: 0 auto;
     width: 80%;
     text-transform: capitalize;
@@ -271,7 +296,7 @@ WORKOUT PAGE
 }
 
 #page_content #exercise_count {
-    font-size: 2.5em;
+    font-size: 3em;
     margin: 0 auto;
     text-transform: uppercase;
 }

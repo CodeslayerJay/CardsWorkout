@@ -273,6 +273,58 @@ $('#adv_workout_btn').click(function(){
     init();
 });
 
+$('#upper_body_workout_btn').click(function(){
+    $('#front_page').hide();
+    $('#workout_page').show();
+    
+    exercises = ['incline pushups', 'pikes', 'pushups', 'pull-ups'];
+    init();
+});
+
+$('#lower_body_workout_btn').click(function(){
+    $('#front_page').hide();
+    $('#workout_page').show();
+    
+    exercises = ['squats', 'lunges', 'bridges', 'knee-highs'];
+    init();
+});
+
+$('#core_workout_btn').click(function(){
+    $('#front_page').hide();
+    $('#workout_page').show();
+    
+    exercises = ['crunches', 'plank', 'leg raises', 'mountain climber'];
+    init();
+});
+
+$('#custom_workout_btn').click(function(){
+    $('#front_page').hide();
+    $('#edit_page').show();
+    
+});
+
+$('#custom_workout_form').on('submit', function(e){
+    e.preventDefault();
+    
+    var data = $(this).serializeArray();
+    exercises = [];
+    
+    data.forEach(function(el){
+        exercises.push(el.value);   
+    });
+    
+    $('#edit_page').hide();
+    $('#workout_page').show();
+    
+    init();
+});
+
+
+
+$('#cancel_btn').click(function(){
+   window.location.href="";  
+});
+
 $('#home_btn').click(function(){
    window.location.href="";  
 });
