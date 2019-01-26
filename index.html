@@ -72,7 +72,7 @@
         <!-- MORE INFORMATION PAGE -->
         <div id="more_info_page">
             <h1 class="title">BodyCore</h1>
-            <hr/>
+            <hr>
             <p>BodyCore is a simple random workout generator using bodyweight exercises. The concept comes
                 from using a deck of playing card to create workouts. Each suit in the deck represents an exercise--Spades: Squats, 
                 Hearts: Pushups, Diamonds: Pikes, Clovers: Crunches. The number on the card represents how many reps to perform with 
@@ -97,7 +97,7 @@
                 Sun: Rest / Optional<br>
                 
             </p>
-            
+            <hr/>
             <p>
                 Disclaimer / Terms & Conditions: <br>
                 This app is for entertainment purpose. Please consult your doctor or a physician before performing any exercise
@@ -109,6 +109,7 @@
         
         <!-- WORKOUT PAGE -->
         <div id="workout_page">
+            
             <!-- PAGE HEADER & NAVIGATION -->
             <div id="page_header">
                 <a href="#" id="home_btn">Home</a>
@@ -125,13 +126,32 @@
 
             <!-- PAGE FOOT / BUTTONS / OPTIONS -->
             <div id="page_footer">
-                <p id="workout_timer">00:00</p>
-                <button id="next_exercise_btn" onclick="updateExercise()">Next</button>
-                <!-- <button id="finish_workout_btn">Finish Workout</button> -->
+                <p id="workout_timer"><span id="mins">00</span>:<span id="secs">00</span></p>
+                
+                <ul id="workout_btn_options">
+                    <li><button id="shuffle_workout_btn">Shuffle</button></li>
+                    <li><button id="next_exercise_btn" onclick="updateExercise()">Next</button></li>
+                </ul>
+                <button id="workout_finish_btn">Finish Workout</button>
             </div>
             <!-- // END PAGE FOOT -->
         </div>
         <!-- // END WORKOUT PAGE -->
+        
+        <!-- STATS PAGE -->
+        <div id="stats_page">
+            <h1 class="title">Way to go!</h1>
+            <p class="tag-line">You have completed the workout.</p>
+            
+            <div>
+                <ul>
+                    <li>Workout Duration: <span id="workout_duration_completed"></span></li>
+                    <li>Exercises completed: <span id="workout_exercises_completed"></span></li>
+                </ul>
+            </div>
+            <button id="start_new_workout">Start a new workout</button>
+        </div>
+        <!-- // END STATS PAGE -->
     </div>
   <!-- // END PAGE CONTENT -->
     

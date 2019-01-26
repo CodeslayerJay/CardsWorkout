@@ -8,23 +8,17 @@ var exercises = ['squats', 'crunches', 'pushups', 'pikes'];
 
 
 // EXERCISES & REPS
-
-
 var reps = [2,3,4,5,6,7,8,9,10,10,10,10,15];
-var wildcardExercise1 = {
-    exercise: "do each exercise",
-    reps: 5
-};
-var wildcardExercise2 ={
-    exercise: "do each exercise",
-    reps: 8
-};
 
 // APP VARIABLES
 var workoutList = []; // Array contains exercise + reps per exercise
 var completedExercises = [] // List of exercises completed from workout list
 var currentExerciseIndex = 0; // Workout list initializer
 var workoutComplete = false;
+var workoutStats = {
+    duration: 0,
+    exercises_completed: 0
+};
 
 // APP SETTINGS
 var settings = {
@@ -73,9 +67,6 @@ function createWorkout(workout){
     // SHUFFLE 
     shuffleWorkoutList(workoutList);
     
-    // ADD WILDCARD EXERCISES
-    //workoutList.push(wildcardExercise1);
-    //workoutList.push(wildcardExercise2);
 }
 
 /////////////////////////////////////////////////////////////
@@ -123,10 +114,10 @@ function updateCounter(){
     
     // UPDATE EXERCISE COMPLETED COUNTER
     settings.totalCounter = settings.totalCounter + 1;
-    nodes.totalCounter.innerHTML = settings.totalCounter + "/" + workoutList.length;
+    nodes.totalCounter.innerHTML = settings.totalCounter + "/" + 52;
     
     // CHECK IF WORKOUT IS COMPLETE
-    if(settings.totalCounter >= workoutList.length){
+    if(settings.totalCounter >= 52){
         workoutComplete = true;
         
         // DEACTIVATE BUTTON
@@ -140,6 +131,11 @@ function updateCounter(){
 /////////////////////////////////////////////////////////////
 function shuffleWorkoutList(a) {
     var j, x, i;
+    
+    if( a === null || a === undefined){
+        a = workoutList;
+    }
+    
     for (i = a.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
         x = a[i];
@@ -164,7 +160,7 @@ function updateExercise(){
             settings.breakCounter = 0; // RESET COUNTER TO 0
 
             // UPDATE TEXT
-            displayExercise("Rest", "2 mins");
+            displayExercise("Rest", "1-3 Mins");
 
             // START TIMER
             //startRestTimer();
@@ -172,8 +168,7 @@ function updateExercise(){
             nextExercise();    
         }
     } else {
-        nodes.exercise.innerHTML = "Way to go!";
-        nodes.reps.innerHTML = "Workout is complete.";
+        completeWorkout();
     }
     
 }
@@ -182,9 +177,20 @@ function updateExercise(){
 // MOVE TO NEXT EXERCISE IN LIST
 /////////////////////////////////////////////////////////////
 function nextExercise(){
-    currentExerciseIndex = currentExerciseIndex + 1;
-
-    displayExercise(workoutList[currentExerciseIndex].exercise, workoutList[currentExerciseIndex].reps);
+    exercise = workoutList[currentExerciseIndex];
+    //currentExerciseIndex = currentExerciseIndex + 1;
+    
+    $('#page_content').hide(200, function(){
+        
+        
+        completedExercises.push(exercise);
+        workoutList.shift();
+        
+         $(this).show();
+         displayExercise(workoutList[0].exercise, workoutList[0].reps);
+    });
+    
+    
 }
 
 /////////////////////////////////////////////////////////////
@@ -211,11 +217,27 @@ function displayExercise(main, sub){
 }
 
 /////////////////////////////////////////////////////////////
+// COMPLETE WORKOUT
+/////////////////////////////////////////////////////////////
+function completeWorkout(){
+
+    $('#workout_page').hide();
+    $('#stats_page').show();
+    
+    $('#workout_duration_completed').text(workoutStats.duration);
+    $('#workout_exercises_completed').text(settings.totalCounter);
+}
+
+
+/////////////////////////////////////////////////////////////
 // WORKOUT TIMER
 /////////////////////////////////////////////////////////////
 function workoutTimer() { 
     
-    var display = document.getElementById("workout_timer");
+    //var display = document.getElementById("workout_timer");
+    var minsEle = document.getElementById("mins");
+    var secsEle = document.getElementById("secs");
+    
     var minutes = 0;
     var seconds = 0;
     
@@ -227,13 +249,23 @@ function workoutTimer() {
         }
         
         if( seconds < 10){
-            display.textContent = "0" + minutes + ":0" + seconds;
+            secsEle.textContent = "0" + seconds;
         } 
         else {
-            display.textContent =  "0" + minutes + ":" + seconds;
+            secsEle.textContent = seconds;
+        }
+        
+        
+        if( minutes < 10 ){
+            minsEle.textContent = "0" + minutes;
+        }
+        else {
+            minsEle.textContent = minutes;
         }
         
         seconds = seconds + 1;
+        
+        workoutStats.duration = minutes + "m : " + seconds + "s";
     }, 1000);
 }
 
@@ -254,22 +286,6 @@ $('#info_back_btn').click(function(){
 $('#beginner_workout_btn').click(function(){
     $('#front_page').hide();
     $('#workout_page').show();
-    init();
-});
-
-$('#int_workout_btn').click(function(){
-    $('#front_page').hide();
-    $('#workout_page').show();
-    
-    exercises = ['incline pushups', 'elevated pikes', 'situps', 'pushups'];
-    init();
-});
-
-$('#adv_workout_btn').click(function(){
-    $('#front_page').hide();
-    $('#workout_page').show();
-    
-    exercises = ['incline pushups', 'elevated pikes', 'burpees', 'pull-ups'];
     init();
 });
 
@@ -295,6 +311,14 @@ $('#core_workout_btn').click(function(){
     
     exercises = ['crunches', 'plank', 'leg raises', 'mountain climber'];
     init();
+    
+    // CHANGE THE REPS FOR PLANKS TO 1 MIN
+    workoutList.forEach(function(val){
+       
+        if( val.exercise === 'plank'){
+            val.reps = '1 min';
+        }
+    });
 });
 
 $('#custom_workout_btn').click(function(){
@@ -320,12 +344,24 @@ $('#custom_workout_form').on('submit', function(e){
 });
 
 
+$('#shuffle_workout_btn').click(function(){
+    shuffleWorkoutList(workoutList);
+    displayExercise(workoutList[currentExerciseIndex].exercise, workoutList[currentExerciseIndex].reps);
+});
+
+$('#workout_finish_btn').click(function(){
+    completeWorkout();
+});
 
 $('#cancel_btn').click(function(){
    window.location.href="";  
 });
 
 $('#home_btn').click(function(){
+   window.location.href="";  
+});
+
+$('#start_new_workout').click(function(){
    window.location.href="";  
 });
 
