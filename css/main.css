@@ -101,7 +101,7 @@ font-family: 'Sarabun', sans-serif;
    ========================================================================== */
 
 html, body {
-    background-color:cornflowerblue;
+    background-color:black;
     color: #f8f8f8;
     font-family: 'Sarabun', sans-serif;
     width: 100%;
@@ -120,9 +120,9 @@ button {
     padding: 10px 20px;
     background-color: transparent;
     margin: 5px auto;
-    border: 1px solid #fff;
+    border: 1px solid #333;
     border-radius: 1px;
-    color: #fff;
+    color: #ccc;
     font-size: 1.2em;
     width: 80%;
     max-width: 300px;
@@ -130,8 +130,8 @@ button {
 }
 
 button:hover {
-    background-color: aliceblue;
-    color: cornflowerblue;
+    background-color: orange;
+    color: white;
     transition: background-color 0.5s;
 }
 
@@ -148,12 +148,14 @@ ul li {
     padding-top: 20px;
     margin-bottom: 0px;
     font-size: 1.5em;
+    color: orange;
 }
 
 .tagline {
     margin-top: 0px;
     font-size: 2.5em;
     padding: 10px;
+    color: #c8c8c8;
 }
 
 @media(min-width: 500px){
@@ -162,7 +164,7 @@ ul li {
     }
     
     .tagline {
-        padding-top: 20px;
+        padding: 30px 0px;
         margin-bottom: -20px;
     }
 }
@@ -199,6 +201,9 @@ EDIT PAGE
     width: 290px;
     margin: 3px auto;
     border-radius: 3px;
+    background-color: transparent;
+    border: 1px solid #333;
+    color: orange;
 }
 
 #edit_page #custom_form_submit_btn {
@@ -206,13 +211,19 @@ EDIT PAGE
     padding: 10px 20px;
     background-color: transparent;
     margin: 5px auto;
-    border: 1px solid #fff;
-    border-radius: 5px;
-    color: #fff;
+    border: 1px solid #333;
+    border-radius: 1px;
+    color: #ccc;
     font-size: 1.2em;
     width: 80%;
     max-width: 300px;
     cursor: pointer;
+}
+
+#edit_page #custom_form_submit_btn:hover {
+    background-color: orange;
+    color: white;
+    transition: background-color 0.5s;
 }
 
 /*---------------------
@@ -265,16 +276,17 @@ WORKOUT PAGE
     display: inline-block;
     position: absolute;
     left: 10px;
-    color: #f8f8f8;
+    color: #ccc;
     text-decoration: none;
     width: 50px;
+    
 }
 
 #page_header #total_exercise_count {
     display: inline-block;
     position: absolute;
     right: 10px;
-    color: #f8f8f8;
+    color: #ccc;
     width: 50px;
     
 }
@@ -282,21 +294,22 @@ WORKOUT PAGE
 
 #page_content {
     margin: 0 auto 50px auto;
-    width: 50%;
-    padding: 20px 0px 20px 0px;
     
+    padding: 20px 0px 20px 0px;
+    font-size: 18px;
 }
 
 #page_content #exercise_title {
-    font-size: 2.5em;
+    font-size: 3em;
     margin: 0 auto;
     width: 80%;
     text-transform: capitalize;
-    padding: 20px 5px;
+    padding: 5px 5px;
+    color: orange;
 }
 
 #page_content #exercise_count {
-    font-size: 5em;
+    font-size: 3.2em;
     margin: 0 auto;
     text-transform: uppercase;
 }
@@ -357,7 +370,6 @@ WORKOUT PAGE
     border-radius: 0px;
     margin: 0 auto;
 }
-
 
 /*---------------------
 STATS PAGE 

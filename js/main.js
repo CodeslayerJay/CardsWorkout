@@ -25,7 +25,8 @@ var settings = {
     restTimer: 2, // TIMER FOR REST PERIODS - Default: 2 mins
     totalCounter: 0, // COUNTER FOR TOTAL EXERCISES COMPLETED
     breakCounter: 0, // COUNTER TO KEEP TRACK WHEN START REST PERIODS
-    workout: 'default' // EXERCISE LIST USED TO GENERATE WORKOUTS
+    workout: 'default', // EXERCISE LIST USED TO GENERATE WORKOUTS
+    shuffleCount: 5 // TOTAL SHUFFLES ALLOWED PER WORKOUT
 }
 
 
@@ -243,7 +244,7 @@ function workoutTimer() {
     
     setInterval(function () {
         
-        if( seconds > 60){
+        if( seconds > 59){
             minutes = minutes + 1;
             seconds = 0;
         }
@@ -345,8 +346,20 @@ $('#custom_workout_form').on('submit', function(e){
 
 
 $('#shuffle_workout_btn').click(function(){
-    shuffleWorkoutList(workoutList);
-    displayExercise(workoutList[currentExerciseIndex].exercise, workoutList[currentExerciseIndex].reps);
+    
+    // CHECK IF USER STILL HAS SHUFFLES
+    if( settings.shuffleCount > 1 ){
+        shuffleWorkoutList(workoutList);
+        displayExercise(workoutList[currentExerciseIndex].exercise, workoutList[currentExerciseIndex].reps);
+        
+        settings.shuffleCount = settings.shuffleCount - 1;
+        $(this).find('span').text(settings.shuffleCount);
+    }
+    else {
+        $(this).remove();
+        $('#next_exercise_btn').css('width', '300px').css('margin','0px');
+    }
+    
 });
 
 $('#workout_finish_btn').click(function(){
