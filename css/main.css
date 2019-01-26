@@ -313,6 +313,18 @@ WORKOUT PAGE
     }
 }
 
+@media(min-width: 900px){
+    #page_content #exercise_title {
+        padding-top: 10px;
+        font-size: 5em;
+    }
+    #page_content #exercise_count {
+        font-size: 4.5em;
+        margin: 0 auto;
+        text-transform: uppercase;
+    }
+}
+
 
 #page_footer {
     display: block;
