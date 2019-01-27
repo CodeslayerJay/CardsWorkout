@@ -17,7 +17,8 @@ var currentExerciseIndex = 0; // Workout list initializer
 var workoutComplete = false;
 var workoutStats = {
     duration: 0,
-    exercises_completed: 0
+    exercises_completed: 0,
+    reps_completed: 0
 };
 
 // APP SETTINGS
@@ -181,6 +182,9 @@ function nextExercise(){
     exercise = workoutList[currentExerciseIndex];
     //currentExerciseIndex = currentExerciseIndex + 1;
     
+    // UPDATE STATS
+    workoutStats.reps_completed = workoutStats.reps_completed + exercise.reps;
+    
     $('#page_content').hide(200, function(){
         
         
@@ -227,6 +231,7 @@ function completeWorkout(){
     
     $('#workout_duration_completed').text(workoutStats.duration);
     $('#workout_exercises_completed').text(settings.totalCounter);
+    $('#workout_reps_completed').text(workoutStats.reps_completed);
 }
 
 
