@@ -3,19 +3,27 @@
 //  Simple random bodyweight workout generator
 //
 //  Author: Jeremy Willhelm
+//  www.github.com/codeslayerjay
 /////////////////////////////////////////////////////////////
-var exercises = ['squats', 'crunches', 'pushups', 'pikes'];
 
 
-// EXERCISES & REPS
-var reps = [2,3,4,5,6,7,8,9,10,10,10,10,15];
 
-// APP VARIABLES
-var workoutList = []; // Array contains exercise + reps per exercise
-var completedExercises = [] // List of exercises completed from workout list
-var currentExerciseIndex = 0; // Workout list initializer
-var workoutComplete = false;
-var workoutStats = {
+/*****************************************
+    Configure Default Settings, Etc
+*******************************************/
+
+// Initial Exercise Scheme
+var exerciseScheme = ['squats', 'crunches', 'pushups', 'pikes'];
+
+// Initial Rep Scheme
+var repScheme = [displayTimer(0,30), displayTimer(0,20), displayTimer(0,10), displayReps(20), displayReps(10), displayReps(15)];
+
+// 
+var _workout = []; // The workout
+var _completedExercises = [] // List of exercises completed from workout list
+var _currentExerciseIndex = 0; // Workout list initializer
+var _workoutComplete = false;
+var _workoutStats = {
     duration: 0,
     exercises_completed: 0,
     reps_completed: 0
@@ -30,12 +38,62 @@ var settings = {
     shuffleCount: 5 // TOTAL SHUFFLES ALLOWED PER WORKOUT
 }
 
+///////////////////////////////////////////
+// PAGE ELEMENTS, COMPONENTS, NODES
+///////////////////////////////////////////
+var app = "app"; // Entry point of the app.
+var exerciseTimerComponent = "";
+var workoutTimerComponent = "";
+var 
 
-// PAGE ELEMENTS & NODES
-var nodes = {
-    totalCounter: document.getElementById('total_exercise_count'),
-    exercise: document.getElementById('exercise_title'),
-    reps: document.getElementById('exercise_count')
+var pageNodes = {
+    entryPoint: document.getElementById(app),
+    
+}
+
+function displayTimer(mins, secs){
+
+    var minsEle = document.getElementById("mins");
+    var secsEle = document.getElementById("secs");
+    
+    if( mins == null || mins == undefined){
+        mins = 0;
+    }
+
+    if( secs == null || secs == undefined){
+        secs = 0;
+    }
+    
+    setInterval(function () {
+        
+        if( secs > 59){
+            minutes = minutes + 1;
+            seconds = 0;
+        }
+        
+        if( seconds < 10){
+            secsEle.textContent = "0" + seconds;
+        } 
+        else {
+            secsEle.textContent = seconds;
+        }
+        
+        
+        if( minutes < 10 ){
+            minsEle.textContent = "0" + minutes;
+        }
+        else {
+            minsEle.textContent = minutes;
+        }
+        
+        seconds = seconds + 1;
+        
+        workoutStats.duration = minutes + "m : " + seconds + "s";
+    }, 1000);
+}
+
+function displayReps(count){
+
 }
 
 /////////////////////////////////////////////////////////////
@@ -47,16 +105,15 @@ function addExercise(name){
 }
 
 /////////////////////////////////////////////////////////////
-// CREATE WORKOUT
+// Build Workout
 /////////////////////////////////////////////////////////////
-function createWorkout(workout){
+function WorkoutBuilder(workout){
    
     // clear workout list
-    workoutList = [];
+    _workout = [];
     
-    var i, j;
-
     // FILL WORKOUT LIST WITH EXERCISE AND REP SCHEME
+    var i, j;
     for(i=0; i < exercises.length; i++){
         for(j=0; j < reps.length; j++){
             workoutList[i + j * exercises.length] = {
@@ -67,7 +124,7 @@ function createWorkout(workout){
     }
     
     // SHUFFLE 
-    shuffleWorkoutList(workoutList);
+    ShuffleWorkout(workoutList);
     
 }
 
@@ -112,7 +169,7 @@ function moveExerciseToComplete(name){
 function updateCounter(){
     
     // UPDATE BREAK COUNTER
-    settings.breakCounter = settings.breakCounter + 1;
+    //settings.breakCounter = settings.breakCounter + 1;
     
     // UPDATE EXERCISE COMPLETED COUNTER
     settings.totalCounter = settings.totalCounter + 1;
@@ -129,22 +186,23 @@ function updateCounter(){
 }
 
 /////////////////////////////////////////////////////////////
-// SHUFFLE WORKOUT LIST
+// SHUFFLE WORKOUT
 /////////////////////////////////////////////////////////////
-function shuffleWorkoutList(a) {
+function ShuffleWorkout(workout) {
     var j, x, i;
     
-    if( a === null || a === undefined){
-        a = workoutList;
+    if( workout === null || workout === undefined){
+        workout = _workout;
     }
     
-    for (i = a.length - 1; i > 0; i--) {
+    for (i = workout.length - 1; i > 0; i--) {
         j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
+        x = workout[i];
+        workout[i] = workout[j];
+        workout[j] = x;
     }
-    return a;
+
+    return workout;
 }
 
 /////////////////////////////////////////////////////////////
@@ -357,8 +415,8 @@ $('#shuffle_workout_btn').click(function(){
         shuffleWorkoutList(workoutList);
         displayExercise(workoutList[currentExerciseIndex].exercise, workoutList[currentExerciseIndex].reps);
         
-        settings.shuffleCount = settings.shuffleCount - 1;
-        $(this).find('span').text(settings.shuffleCount);
+        //settings.shuffleCount = settings.shuffleCount - 1;
+        //$(this).find('span').text(settings.shuffleCount);
     }
     else {
         $(this).remove();

@@ -19,7 +19,8 @@
     
     <!-- STYLES -->
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/app.css">
+
 </head>
 
 <body>
@@ -27,142 +28,43 @@
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
 
-  <!-- PAGE CONTENT -->
-    <div id="wrapper">
-        
-        
-        <!-- FRONT PAGE -->
-        <div id="front_page">
-            <h1 class="title">BodyCore</h1>
-            <p class="tagline">A simple random workout generator.</p>
-            <br>
-            <ul>
-                <li><button id="beginner_workout_btn">Full Body</button></li>
-                <li><button id="upper_body_workout_btn">Upper Body</button></li>
-                <li><button id="lower_body_workout_btn">Lower Body</button></li>
-                <li><button id="core_workout_btn">Core & Abs</button></li>
-                <li><button id="custom_workout_btn">Custom</button></li>
-            </ul>
-            
-            <p>
-                <button id="show_info_page_btn">First time?</button>
-            </p>
-        
-            <p id="copyright_footer">&copy; 2019 - BodyCoreWorkout.com</p>
+  <div id="app">
+    
+    <div id="workout_page">
+      
+      <div id="start_screen">
+        <h1 style="color: orange; margin-bottom: 50px;">Get ready to begin...</h1>
+        <button onclick="StartWorkout()">Start</button>
+      </div>
+      <div id="rest_screen">
+        <h1 style="color: orange">Get Ready!</h1>
+        <h1 id="next-exercise"></h1>
+        <h1 id="rest-timer"></h1>
+      </div>
+      <div id="exercise_screen">
+        <div class="main">
+          <h1 id="exercise-text"></h1>
+          <h2 id="rep-text"></h2>
+          <h2 id="rep-timer"></h2>
         </div>
-        <!-- // END OF FRONT PAGE -->
-        
-        <!-- CUSTOM EXERCISE / EDIT PAGE -->
-        <div id="edit_page">
-            <h1 class="title">Custom Workout</h1>
-            <p class="tag-line">Create your own custom workout</p>
-            <hr>
-            <form id="custom_workout_form">
-                <input type="text" name="exercise1" placeholder="Exercise 1" required/>
-                <input type="text" name="exercise2" placeholder="Exercise 2" required/>
-                <input type="text" name="exercise3" placeholder="Exercise 3" required/>
-                <input type="text" name="exercise4" placeholder="Exercise 4" required/>
-                <br>
-                <input type="submit" id="custom_form_submit_btn" value="Start Workout"/>
-                <button id="cancel_btn">Cancel</button>
-            </form>
-        </div>
-        <!-- // END OF CUSTOM EXERCISE / EDIT PAGE -->
-        
-        <!-- MORE INFORMATION PAGE -->
-        <div id="more_info_page">
-            <h1 class="title">BodyCore</h1>
-            <hr>
-            <p>BodyCore is a simple random workout generator using bodyweight exercises. The concept comes
-                from using a deck of playing card to create workouts. Each suit in the deck represents an exercise--Spades: Squats, 
-                Hearts: Pushups, Diamonds: Pikes, Clovers: Crunches. The number on the card represents how many reps to perform with 
-                face cards being 10 reps.
-            </p>
-            
-            <p>
-                How to do the workouts: <br><br>
-                Perform as many exercises with perfect form in the fastest time possible. When you are finished note how many
-                exercises you completed by the total exercise count in top right corner of screen and the current duration of workout.
-                If you want a greater challenge, then select a more difficult workout plan or try to beat your previous workout 
-                count and duration.
-                
-                <br><br>
-                Example workout plan:<br><br>
-                Mon: Lower Body<br>
-                Tues: Full Body<br>
-                Wed: Core & Abs<br>
-                Thurs: Full Body<br>
-                Fri: Upper Body<br>
-                Sat: Rest / Optional<br>
-                Sun: Rest / Optional<br>
-                
-            </p>
-            <hr/>
-            <p>
-                Disclaimer / Terms & Conditions: <br>
-                This app is for entertainment purpose. Please consult your doctor or a physician before performing any exercise
-                generated from this app. By using this site you accept the terms & conditions.
-            </p>
-            <button id="info_back_btn">Back</button>
-        </div>
-        <!-- // END OF MORE INFORMATION PAGE -->
-        
-        <!-- WORKOUT PAGE -->
-        <div id="workout_page">
-            
-            <!-- PAGE HEADER & NAVIGATION -->
-            <div id="page_header">
-                <a href="#" id="home_btn">Home</a>
-                <span id="total_exercise_count"></span>
-            </div>
-            <!-- // END HEADER -->
 
-            <!-- MAIN CONTENT -->
-            <div id="page_content">
-                <h1 id="exercise_title"></h1>
-                <p id="exercise_count">Creating Workout...</p>
-            </div>
-            <!-- // END MAIN CONTENT -->
-
-            <!-- PAGE FOOT / BUTTONS / OPTIONS -->
-            <div id="page_footer">
-                <p id="workout_timer"><span id="mins">00</span>:<span id="secs">00</span></p>
-                
-                <ul id="workout_btn_options">
-                    <li><button id="shuffle_workout_btn">Shuffle x<span>5</span></button></li>
-                    <li><button id="next_exercise_btn" onclick="updateExercise()">Next</button></li>
-                </ul>
-                <button id="workout_finish_btn">Finish Workout</button>
-            </div>
-            <!-- // END PAGE FOOT -->
+        <div class="options">
+          <button onclick="NextExercise()">Next</button>
         </div>
-        <!-- // END WORKOUT PAGE -->
-        
-        <!-- STATS PAGE -->
-        <div id="stats_page">
-            <h1 class="title">Way to go!</h1>
-            <p class="tag-line">You have completed the workout.</p>
-            
-            <div>
-                <ul>
-                    <li>Workout Duration: <span id="workout_duration_completed"></span></li>
-                    <li>Exercises completed: <span id="workout_exercises_completed"></span></li>
-                    <li>Total Reps: <span id="workout_reps_completed"></span></li>
-                </ul>
-            </div>
-            <button id="start_new_workout">Start a new workout</button>
-        </div>
-        <!-- // END STATS PAGE -->
+      </div>
     </div>
-  <!-- // END PAGE CONTENT -->
-    
-    
-    
+    <div id="stats_page">
+
+    </div>
+  </div>
+
+
+
   <!-- SCRIPTS -->
     <script src="js/vendor/modernizr-3.6.0.min.js"></script>
     <script src="js/vendor/jquery-3.3.1.min.js"></script>
     
-    <script src="js/main.js"></script>
+    <script src="js/app.js"></script>
 
   
 </body>
