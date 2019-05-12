@@ -29,12 +29,48 @@
   <![endif]-->
 
   <div id="app">
-    
+    <div id="home_page">
+      <div class="main">
+          <h4>BodyCore 2.0</h4>
+          <h1 class="title">Pick your workout</h1>
+      </div>
+      <div class="body">
+        <h4>Workouts already designed for you.</h4>
+        <ul class="list-inline">
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'defaultWorkout')">Basic Full Body</button></li>
+        </ul>
+        <hr/>
+        <h4>Design your own workout by choosing exercises below.</h4>
+        <p>(Choose at least 4 exercises to start)</p>
+        <button onclick="DisplayStartPage()" style="display: none;" id="buildWorkoutBtn">Build Workout</button>
+        <ul class="list-inline">
+          <li><button onclick="WorkoutSchemeBtnHandler(this,'Pushups')">Pushups</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Incline Pushups')">Incline Pushups</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Squats')">Squats</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Pistol Squats')">Pistol Squats</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Pikes')">Pikes</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Dips')">Dips</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Crunches')">Crunches</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Pullups')">Pullups</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Lunges')">Lunges</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Jumping Jacks')">Jumping Jacks</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Burpees')">Burpees</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Mountain Climbers')">Mountain Climbers</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Chinups')">Chinups</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Knee Highs')">Knee Highs</button></li>
+          <li><button onclick="WorkoutSchemeBtnHandler(this, 'Bicep Curls')">Bicep Curls</button></li>
+        </ul>
+      </div>
+    </div>
     <div id="workout_page">
-      
+      <p id="workout-timer"></p>
       <div id="start_screen">
-        <h1 style="color: orange; margin-bottom: 50px;">Get ready to begin...</h1>
+        <h1 style="color: orange; margin-bottom: 50px;">Press Start <br/>when you are ready to begin...</h1>
+        <p>Your workout list:</p>
+        <ul id="exerciseList"></ul>
         <button onclick="StartWorkout()">Start</button>
+        <br/>
+        <a href="index.html">Go back</a>
       </div>
       <div id="rest_screen">
         <h1 style="color: orange">Get Ready!</h1>
